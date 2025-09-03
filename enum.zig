@@ -42,15 +42,15 @@ pub fn main() !void {
     const compas = Compas.reverse(.North);
     const status_order = StatusOrder.Success;
     const mode: Mode = @enumFromInt(1);
-    const all_mode = @typeInfo(Mode);
+    // const all_mode = @typeInfo(Mode);
 
     std.debug.print("menu: {s}\n", .{@tagName(menu)}); // tag name untuk mengubah jadi string
     std.debug.print("status menu: {}\n", .{@intFromEnum(status_menu)});
     std.debug.print("reverse North is: {s}\n", .{@tagName(compas)});
     std.debug.print("mode is: {}\n", .{@tagName(mode)});
-    inline for (all_mode.@"enum".fields) |field| { // ERROR this
-        std.debug.print("mode name : {any}, mode value: \n", .{field.name});
-    }
+    // inline for (all_mode.@"enum".fields) |field| { // ERROR this
+    //     std.debug.print("mode name : {any}, mode value: \n", .{field.name});
+    // }
 
     if (status_order.cancelOrder()) {
         std.debug.print("status order: ({s}), enable cancel order: true \n", .{
