@@ -8,6 +8,7 @@ fn add(foo: anytype, bar: @TypeOf(foo)) @TypeOf(foo) {
 }
 
 pub fn main() !void {
+    // buat fn yg arg sama kalo type nya sama semua dan memang mau di ganti2 type nya lebih bagus pake @TypeOf
     // atau kalo pengen binding variabel lain supaya tipe-nya selalu ikut satu variabel utama.
     const a: u8 = 10;
     const b: @TypeOf(a) = 20;
