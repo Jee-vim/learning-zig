@@ -1,5 +1,8 @@
-//3️⃣ Analogi gampang
+// allocator itu dipakai kalau kamu butuh alokasi memori dinamis
+// (sesuatu yang ukurannya baru ketahuan waktu runtime, atau bisa berubah-ubah).
+// Kalau semua data bisa ditentukan compile-time atau pakai stack, kamu nggak perlu allocator.
 //
+//3️⃣ Analogi gampang
 // Bayangin allocator itu “bank memory”:
 // Kamu minta uang (memory) → bank kasih (alloc)
 // Selesai pakai → balikin ke bank (free)
@@ -37,6 +40,7 @@
 //   ^    ^
 //   u8   nilai maksimal per kotak = 255
 //   dan panjang array nya 10
+//
 
 const std = @import("std");
 
