@@ -47,3 +47,27 @@ pub fn main() !void {
     const shortcut_union_with_enum = Message{ .number = 100 };
     std.debug.print("shortcut union with enum: {}", .{shortcut_union_with_enum.number});
 }
+
+// 🔹 Struct = Laci dengan banyak kotak
+//
+// Bayangin kamu punya lemari kecil.
+//
+// Ada laci buat buku, laci buat baju, laci buat sepatu.
+//
+// Semua laci ada terus, jadi kamu bisa simpan buku, baju, dan sepatu sekaligus.
+//
+// Tapi karena semua laci ada, lemari itu jadi lebih gede.
+//
+// 👉 Ini kayak struct: semua variabel hidup barengan, jadi butuh ruang lebih banyak.
+//
+// 🔹 Union = Satu kotak serbaguna
+//
+// Sekarang bayangin kamu punya satu kotak aja.
+//
+// Kadang isinya buku, kadang diganti jadi baju, kadang jadi sepatu.
+//
+// Kotak itu ukurannya disesuaikan sama barang yang paling besar (misalnya sepatu).
+//
+// Jadi hemat ruang, tapi jelas kamu nggak bisa simpan buku+baju+sepatu sekaligus. Harus pilih salah satu.
+//
+// 👉 Ini kayak union: semua variabel numpang tempat di ruang yang sama, jadi hemat memori, tapi cuma bisa aktif satu waktu.
