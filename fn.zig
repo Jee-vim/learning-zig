@@ -16,6 +16,13 @@ fn foo(comptime T: type, n: *const T) void {
     std.debug.print("{s} {n}\n", .{ @typeName(T), n });
 }
 
+// return a val pointer
+fn addPtr(x: u8, y: @TypeOf(x)) *const u8 {
+    const result = x + y;
+    std.debug.print("result : {}\n", .{result});
+    return &result;
+}
+
 pub fn main() void {
     const y = add(6);
     const other_y = add(4);
@@ -26,4 +33,5 @@ pub fn main() void {
 
     var z: f64 = 3.14;
     foo(f64, &z);
+    std.debug.print("fn return ptr : {}", .{addPtr(5, 5)});
 }

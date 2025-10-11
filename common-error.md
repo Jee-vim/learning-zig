@@ -43,6 +43,8 @@
 - **Case 2** → Used `const mem.Allocator` where mutation is expected.  
 - **Case 3** → Added `&` too many times.  
 
+4.[expected type *T fund *const T](https://ziggit.dev/t/what-does-error-expected-type-t-found-const-t-mean-where-t-is-some-type/1320) 
+
 ---
 
 # Ignored Return Value / Non-Void Value Error in Zig
