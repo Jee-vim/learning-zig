@@ -82,3 +82,15 @@
 - **Case 3** → The function should return `void` if no value is needed; avoids compiler complaints.
 
 ---
+
+
+# consider omitting try
+'it's a compiler hint` it show up when u have a fn that actually didn't return erorr
+1. Example
+```zig
+
+fn foo() void {}
+pub fn main() !void {
+    try foo(); // note: expected type '!void', found 'void'
+}
+```
