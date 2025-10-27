@@ -38,6 +38,8 @@
 3. **Double referencing (`&` when already a pointer)**  
    - Writing `&&gpa.allocator` gives you `**mem.Allocator`, which doesn’t match.  
 
+3. **Using const instead of var**  
+
 ### Quick Distinction
 - **Case 1** → Forgot `&` when function expects a pointer.  
 - **Case 2** → Used `const mem.Allocator` where mutation is expected.  
