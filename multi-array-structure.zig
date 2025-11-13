@@ -15,6 +15,9 @@ pub fn main() !void {
     try people.append(allocator, .{ .name = "bambang", .age = 15, .height = 110.8 });
 
     for (people.items(.age)) |*val| {
-        std.debug.print("name: {d}\n", .{val.*});
+        std.debug.print("age: {d}\n", .{val.*});
+    }
+    for (people.items(.age), people.items(.name)) |*val, *val2| {
+        std.debug.print("age: {d}, name: {s}\n", .{ val.*, val2.* });
     }
 }
