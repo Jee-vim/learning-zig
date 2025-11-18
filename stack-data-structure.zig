@@ -52,7 +52,7 @@ fn GenStack(comptime T: type) type {
         allocator: Allocator,
         const Self = @This();
 
-        pub fn init(alloctor: Allocator, capacity: usize) !Stack(T) {
+        pub fn init(alloctor: Allocator, capacity: usize) !GenStack(T) {
             var buf = try alloctor.alloc(T, capacity);
             return .{
                 .items = buf[0..],
@@ -62,11 +62,11 @@ fn GenStack(comptime T: type) type {
             };
         }
 
-        pub fn deinit(self: *Stack) void {
+        pub fn deinit(self: *GenStack(T)) void {
             self.allocator.free(self.items);
         }
 
-        pub fn push(self: *Stack, val: T) !void {
+        pub fn push(self: *GenStack(T), val: T) !void {
             if ((self.length + 1) > self.capacity) {
                 var new_buf = try self.allocator.alloc(T, self.capacity * 2);
                 @memcpy(new_buf[0..self.capacity], self.items);
@@ -79,7 +79,7 @@ fn GenStack(comptime T: type) type {
             self.length += 1;
         }
 
-        pub fn pop(self: *Stack) void {
+        pub fn pop(self: *GenStack(T)) void {
             if (self.length == 0) return;
             self.items[self.length - 1] = undefined;
             self.length -= 1;
@@ -87,4 +87,26 @@ fn GenStack(comptime T: type) type {
     };
 }
 
-pub fn main() !void {}
+pub fn main() !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
+    const allocator = gpa.allocator();
+    const Stacku8 = GenStack([]const u8);
+    var stack = try Stacku8.init(allocator, 10);
+    defer stack.deinit();
+    try stack.push("ab");
+    try stack.push("cd");
+    try stack.push("ef");
+    try stack.push("gh");
+
+    std.debug.print("stack len: {}\n", .{stack.length});
+    std.debug.print("stack cap: {}\n", .{stack.capacity});
+    stack.pop();
+    std.debug.print("stack len: {}\n", .{stack.length});
+    stack.pop();
+    std.debug.print("stack cap: {}\n\n", .{stack.capacity});
+    for (stack.items, 0..) |value, i| {
+        std.debug.print("{d}. {s}\n", .{ i, value });
+    }
+    std.debug.print("\nstack len: {}\n", .{stack.length});
+}
