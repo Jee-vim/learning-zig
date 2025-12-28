@@ -96,3 +96,8 @@ pub fn main() !void {
     try foo(); // note: expected type '!void', found 'void'
 }
 ```
+
+# remainder division with 'i32' and 'comptime_int': signed integers and floats must use @rem or @mod
+error message indicates that you are trying to perform a remainder division
+using the % operator with signed integers and a compile-time integer. 
+In Zig, this operation is not allowed for signed integers.
